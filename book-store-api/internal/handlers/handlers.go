@@ -97,7 +97,7 @@ func (h *Handler) GetBooks(c *gin.Context) {
 			continue
 		}
 
-		if maxPriceStr != "" && book.Price > maxPrice {
+		if maxPriceStr != "" && book.Price < maxPrice {
 			continue
 		}
 
@@ -127,7 +127,7 @@ func (h *Handler) GetBooks(c *gin.Context) {
 
 // GetBook handles GET /books/:id endpoint
 func (h *Handler) GetBook(c *gin.Context) {
-	id := c.Param("id")
+	id := c.Param("bookId")
 
 	book, err := h.store.GetBookByID(id)
 	if err != nil {
@@ -166,7 +166,7 @@ func (h *Handler) UpdateBook(c *gin.Context) {
 		return
 	}
 
-	updatedBook, err := h.store.UpdateBook(id, book)
+	updatedBook, err := h.store.UpdateBook(id, models.Book{})
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Book not found"})
 		return
