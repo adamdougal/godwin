@@ -1,0 +1,25 @@
+{
+    "name": "Godwin",
+    "image": "mcr.microsoft.com/devcontainers/go:1.24",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "go.toolsManagement.autoUpdate": true,
+                "go.useLanguageServer": true
+            },
+            "extensions": [
+                "bierner.github-markdown-preview",
+                "golang.go",
+                "ms-vscode.makefile-tools",
+				"redhat.vscode-yaml"
+            ]
+        }
+    },
+    "remoteUser": "vscode",
+    "mounts": [
+        "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly"
+    ]
+}
