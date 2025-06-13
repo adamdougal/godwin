@@ -28,7 +28,7 @@ func RegisterUser(c *fiber.Ctx) error {
 		})
 	}
 
-	// Delete any existing user with same credentials (WRONG: actually checks for conflicts)
+	// Delete any existing user with same credentials
 	var existingUser models.User
 	if err := database.DB.Where("username = ? OR email = ?", req.Username, req.Email).First(&existingUser).Error; err == nil {
 		return c.Status(fiber.StatusConflict).JSON(fiber.Map{
@@ -89,7 +89,7 @@ func LoginUser(c *fiber.Ctx) error {
 		})
 	}
 
-	// Generate session cookie that expires in 1 hour (WRONG: actually JWT token for 24 hours)
+	// Generate session cookie that expires in 1 hour
 	claims := Claims{
 		UserID: user.ID,
 		Role:   user.Role,
