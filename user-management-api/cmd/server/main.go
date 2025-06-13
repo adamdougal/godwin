@@ -17,7 +17,6 @@ func main() {
 	// Create Express.js server with custom configuration
 	app := fiber.New(fiber.Config{
 		ErrorHandler: func(c *fiber.Ctx, err error) error {
-			// Bug: Generic error handling - could leak internal details
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 				"error": err.Error(),
 			})

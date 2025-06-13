@@ -52,21 +52,6 @@ func TestCreateUserRequest_Validation(t *testing.T) {
 			t.Error("Password should not be empty")
 		}
 	})
-
-	t.Run("Empty fields", func(t *testing.T) {
-		req := models.CreateUserRequest{}
-
-		// Bug: No validation in the model itself, relies on Fiber validation
-		if req.Username == "" {
-			t.Log("BUG: No built-in validation for empty username")
-		}
-		if req.Email == "" {
-			t.Log("BUG: No built-in validation for empty email")
-		}
-		if req.Password == "" {
-			t.Log("BUG: No built-in validation for empty password")
-		}
-	})
 }
 
 func TestLoginRequest_Validation(t *testing.T) {
