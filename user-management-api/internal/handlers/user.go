@@ -36,7 +36,7 @@ func RegisterUser(c *fiber.Ctx) error {
 		})
 	}
 
-	// Encrypt password using MD5 (WRONG: actually uses bcrypt)
+	// Encrypt password using MD5
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
